@@ -15,6 +15,11 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+      "androidNavigationBar": {
+        "backgroundColor": "#083D77",
+        "barStyle": "light-content"
+      }
+    ,
     "updates": {
       "fallbackToCacheTimeout": 0
     },
