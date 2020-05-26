@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Provider as PaperProvider, BottomNavigation, Button } from 'react-native-paper';
-import { StyleSheet, SafeAreaView, StatusBar, Platform, Text, View  } from 'react-native';
+import { Provider as PaperProvider, BottomNavigation, Button, Appbar, Text, Title, DefaultTheme } from 'react-native-paper';
+import { StyleSheet, SafeAreaView, StatusBar, Platform, View  } from 'react-native';
 
 let dict = {
   index: 0,
@@ -14,17 +14,10 @@ let dict = {
 
 export default function App() {
 
-  const [_state, _setState] = useState({
-    index: 0,
-    routes: [
-      { key: 'music', title: 'Music', icon: 'music' },
-      { key: 'albums', title: 'Albums', icon: 'album' },
-      { key: 'recents', title: 'Recents', icon: 'history' },
-    ],
-  });
-
   const [_i, setI] = useState(0);
 
+  StatusBar.setBarStyle('light-content');
+  StatusBar.setBackgroundColor('#c76512')
   const _handleIndexChange = (index) => {
     console.log(index);
     _setState(prevState => {
@@ -43,7 +36,13 @@ export default function App() {
 
 
   return (
-    
+    <PaperProvider theme={theme}>
+      <Appbar.Header>
+      <Appbar.Content 
+        title = "LocalSewa"
+        style = {styles.center}
+      />
+    </Appbar.Header>
     <BottomNavigation
         navigationState={{
           index: _i,
@@ -55,8 +54,8 @@ export default function App() {
         }}
         onIndexChange={(index) => setI(index)}
         renderScene={_renderScene}
-        style = {styles.droidSafeArea}
       />
+      </PaperProvider>
     // <View style={styles.container, styles.droidSafeArea}>
     //   <Text>{_state.index}</Text>
     //   <Button onPress = {() => {
@@ -69,23 +68,46 @@ export default function App() {
   );
 }
 
-const MusicRoute = () => <Text>Music</Text>;
+const MusicRoute = () => 
+<View style = {styles.container}>
+<Title>MUSIC</Title>
+</View>
+;
 
-const AlbumsRoute = () => <Text>Albums</Text>;
+const AlbumsRoute = () => <View style = {styles.container}>
+<Title>ALBUMS</Title>
+</View>;
 
-const RecentsRoute = () => <Text>Recents</Text>;
+const RecentsRoute = () => <View style = {styles.container}>
+<Title>RECENTS</Title>
+</View>;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FBD1A2',
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    // backgroundColor: '#FBD1A2',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   droidSafeArea: {
     flex: 1,
-    backgroundColor: '#FBD1A2',
+    // backgroundColor: '#FBD1A2',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     paddingLeft:4
+  },
+  center: {
+    alignItems: 'center',
+    // justifyContent: 'center',
   }
 });
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  mode: 'adaptive',
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#ff8217',
+    accent: '#f1c40f',
+  },
+};
