@@ -5,9 +5,8 @@ import * as Font from 'expo-font';
 
 
 
-
 function MyTabs() {
-	return (<Tabs style={{position:'absolute',marginTop:0}}>
+	return (<Tabs style={{ position: 'relative', marginTop: -12, marginHorizontal:20 }}>
 		<Tab heading="Tab1">
 			<Text>Hello 1</Text>
 		</Tab>
@@ -20,7 +19,7 @@ function MyTabs() {
 	</Tabs>)
 }
 function MyHeader() {
-	return(<Header>
+	return (<Header>
 		<Left>
 			<Button transparent>
 				<Icon name='menu' />
@@ -31,6 +30,28 @@ function MyHeader() {
 		</Body>
 		<Right />
 	</Header>)
+}
+function MyFooter() {
+	return(<Footer>
+		<FooterTab>
+			<Button vertical>
+				<Icon name="apps" />
+				<Text>Apps</Text>
+			</Button>
+			<Button vertical>
+				<Icon name="camera" />
+				<Text>Camera</Text>
+			</Button>
+			<Button vertical active>
+				<Icon active name="navigate" />
+				<Text>Navigate</Text>
+			</Button>
+			<Button vertical>
+				<Icon name="person" />
+				<Text>Contact</Text>
+			</Button>
+		</FooterTab>
+	</Footer>)
 }
 
 export default function App() {
@@ -47,28 +68,9 @@ export default function App() {
 		<AppLoading />
 	) : (
 			<Container>
-				<MyHeader/>
+				<MyHeader />
 				<MyTabs />
-				<Footer>
-					<FooterTab>
-						<Button vertical>
-							<Icon name="apps" />
-							<Text>Apps</Text>
-						</Button>
-						<Button vertical>
-							<Icon name="camera" />
-							<Text>Camera</Text>
-						</Button>
-						<Button vertical active>
-							<Icon active name="navigate" />
-							<Text>Navigate</Text>
-						</Button>
-						<Button vertical>
-							<Icon name="person" />
-							<Text>Contact</Text>
-						</Button>
-					</FooterTab>
-				</Footer>
+				<MyFooter/>
 			</Container>
 		);
 
