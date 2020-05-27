@@ -84,8 +84,9 @@ const MusicRoute = () => {
 			style={styles.navTabs2}
 			onIndexChange={(index) => setI(index)}
 			renderScene={_renderScene}
-			shifting='true'
+			// shifting='true'
 			labeled='true'
+			theme={{ roundness: 3 }}
 		/>
 	)
 }
@@ -143,7 +144,8 @@ const styles = StyleSheet.create({
 		zIndex:100
 	},
 	navTabs2:{
-		zIndex:100
+		zIndex:100,
+		// borderRadius:'100px'
 	},
 	topHeader:{
 		zIndex:-100,
