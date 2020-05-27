@@ -86,7 +86,6 @@ const MusicRoute = () => {
 			renderScene={_renderScene}
 			// shifting='true'
 			labeled='true'
-			theme={{ roundness: 3 }}
 		/>
 	)
 }
@@ -131,17 +130,19 @@ const styles = StyleSheet.create({
 	},
 	center: {
 		alignItems: 'center',
-		paddingBottom:25
+		paddingBottom:25,
+		// elevation:0
 	},
 	navTabs:{
 		position:'absolute',
 		top:0,
-		marginTop:-30,
-		borderRadius:'100px',
+		marginTop:0,
+		borderRadius:100,
 		backgroundColor:'#FFFFFF',
 		marginHorizontal:20,
-		height:10,
-		zIndex:100
+		height:60,
+		// transform:[{'translate':(0,0,1)}]
+		// elevation:100
 	},
 	navTabs2:{
 		zIndex:100,
