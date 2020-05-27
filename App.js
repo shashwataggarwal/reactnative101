@@ -22,7 +22,7 @@ export default function App() {
 
 	return (
 		<PaperProvider theme={theme}>
-			<Appbar.Header>
+			<Appbar.Header style={styles.topHeader}>
 				<Appbar.Content
 					title="LocalSewa"
 					style={styles.center}
@@ -80,6 +80,7 @@ const MusicRoute = () => {
 				]
 			}}
 			barStyle={styles.navTabs}
+			style={styles.navTabs2}
 			onIndexChange={(index) => setI(index)}
 			renderScene={_renderScene}
 			shifting='true'
@@ -124,12 +125,24 @@ const styles = StyleSheet.create({
 		paddingLeft: 4
 	},
 	center: {
-		alignItems: 'center',
+		alignItems: 'center'
 	},
 	navTabs:{
 		position:'absolute',
-		top:0,
-		backgroundColor:'#FFFFFF'
+		top:-10,
+		borderRadius:'100px',
+		backgroundColor:'#FFFFFF',
+		marginHorizontal:20,
+		height:10,
+		zIndex:'100'
+	},
+	navTabs2:{
+		zIndex:100
+	},
+	topHeader:{
+		zIndex:0,
+		height:55,
+		paddingBottom:25
 	}
 });
 
