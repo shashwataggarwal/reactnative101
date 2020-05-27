@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Provider as PaperProvider, BottomNavigation, Button, Appbar, Text, Title, DefaultTheme, Card, Paragraph, Avatar } from 'react-native-paper';
-import { StyleSheet, SafeAreaView, StatusBar, Platform, View, ScrollView} from 'react-native';
-
-
-
+import { StyleSheet, SafeAreaView, StatusBar, Platform, View, ScrollView } from 'react-native';
+import { render } from 'react-dom';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 export default function App() {
-
-	const [_i, setI] = useState(0);
-
 	StatusBar.setBarStyle('light-content');
 	StatusBar.setBackgroundColor('orange')
+	const [_i, setI] = useState(0);
+
+
 
 
 	const _renderScene = BottomNavigation.SceneMap({
@@ -32,7 +32,7 @@ export default function App() {
 				navigationState={{
 					index: _i,
 					routes: [
-						{ key: 'music', title: 'Music', icon: 'music' },
+						{ key: 'music', title: 'Complaints', icon: 'music' },
 						{ key: 'albums', title: 'Albums', icon: 'album' },
 						{ key: 'recents', title: 'Recents', icon: 'history' },
 					]
@@ -44,35 +44,66 @@ export default function App() {
 	);
 }
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+function LeftContent(props) {
+	return (<Avatar.Icon {...props} icon="folder" />)
+}
 
-const MyComponent = () => (
-  <Card style={styles.cardStyles}>
-    <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
-    <Card.Content>
-      <Title>Card title</Title>
-      <Paragraph>Card content</Paragraph>
-    </Card.Content>
-    <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-    <Card.Actions>
-      <Button>Cancel</Button>
-      <Button>Ok</Button>
-    </Card.Actions>
-  </Card>
+const CardComponent = () => (
+	<Card style={styles.cardStyles}>
+		<Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+		<Card.Content>
+			<Title>Card title</Title>
+			<Paragraph>Card content</Paragraph>
+		</Card.Content>
+		<Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+		<Card.Actions>
+			<Button>Cancel</Button>
+			<Button>Ok</Button>
+		</Card.Actions>
+	</Card>
 );
-const MusicRoute = () =>{
-	return(
-	<ScrollView contentContainerStyle={styles.container}>
-		<MyComponent/>
-		<MyComponent/>
-		<MyComponent/>
-		<MyComponent/>
-		<MyComponent/>
-	</ScrollView>
+const MusicRoute = () => {
+	const [_i, setI] = useState(0);
+	const _renderScene = BottomNavigation.SceneMap({
+		myComplaints: myComplaintsRoute,
+		allComplaints: allComplaintsRoute 
+		// recents: RecentsRoute,
+	});
+
+	return (
+		<BottomNavigation
+			navigationState={{
+				index: _i,
+				routes: [
+					{ key: 'myComplaints', title: 'My Complaints', icon: 'music' },
+					{ key: 'allComplaints', title: 'All Complaints', icon: 'album' },
+				]
+			}}
+			barStyle={styles.navTabs}
+			onIndexChange={(index) => setI(index)}
+			renderScene={_renderScene}
+			shifting='true'
+			labeled='true'
+		/>
 	)
 }
+
 const AlbumsRoute = () => <View style={styles.container}>
 	<Title>ALBUMS</Title>
+</View>;
+
+function myComplaintsRoute(){
+	return(
+		<ScrollView contentContainerStyle={styles.container}>
+			<CardComponent/>
+			<CardComponent/>
+			<CardComponent/>
+			<CardComponent/>
+		</ScrollView>
+	)
+}
+const allComplaintsRoute = () => <View style={styles.container}>
+<Title>All Complaints</Title>
 </View>;
 
 const RecentsRoute = () => <View style={styles.container}>
@@ -81,10 +112,10 @@ const RecentsRoute = () => <View style={styles.container}>
 
 const styles = StyleSheet.create({
 	container: {
-		padding:8
+		padding: 8
 	},
-	cardStyles:{
-		marginBottom:8
+	cardStyles: {
+		marginBottom: 8
 	},
 	droidSafeArea: {
 		flex: 1,
@@ -94,6 +125,11 @@ const styles = StyleSheet.create({
 	},
 	center: {
 		alignItems: 'center',
+	},
+	navTabs:{
+		position:'absolute',
+		top:0,
+		backgroundColor:'#FFFFFF'
 	}
 });
 
