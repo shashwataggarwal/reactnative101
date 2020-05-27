@@ -27,6 +27,7 @@ export default function App() {
 					title="LocalSewa"
 					style={styles.center}
 				/>
+				<Appbar.Action icon="magnify" style={styles.profileImage} onPress={() => {}} />
 			</Appbar.Header>
 			<BottomNavigation
 				navigationState={{
@@ -110,39 +111,49 @@ const allComplaintsRoute = () => <View style={styles.container}>
 const RecentsRoute = () => <View style={styles.container}>
 	<Title>RECENTS</Title>
 </View>;
-
+// const ProfileImage = () => (
+// 	<Avatar.Icon size={24} icon="music" />
+//   );
 const styles = StyleSheet.create({
 	container: {
-		padding: 8
+		paddingHorizontal: 10,
+		paddingTop:30
 	},
 	cardStyles: {
 		marginBottom: 8
 	},
 	droidSafeArea: {
-		flex: 1,
+		flex: 1, 
 		// backgroundColor: '#FBD1A2',
 		paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
 		paddingLeft: 4
 	},
 	center: {
-		alignItems: 'center'
+		alignItems: 'center',
+		paddingBottom:25
 	},
 	navTabs:{
 		position:'absolute',
-		top:-10,
+		top:0,
+		marginTop:-30,
 		borderRadius:'100px',
 		backgroundColor:'#FFFFFF',
 		marginHorizontal:20,
 		height:10,
-		zIndex:'100'
+		zIndex:100
 	},
 	navTabs2:{
 		zIndex:100
 	},
 	topHeader:{
-		zIndex:0,
+		zIndex:-100,
 		height:55,
-		paddingBottom:25
+		// paddingBottom:25
+	},
+	profileImage:{
+		position:'absolute',
+		left:0,
+		backgroundColor:"#EFEFEF"
 	}
 });
 
