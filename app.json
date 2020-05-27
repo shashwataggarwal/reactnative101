@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "DoneWithIt",
-    "slug": "DoneWithIt",
+    "name": "LocalSewa",
+    "slug": "LocalSewa",
     "platforms": [
       "ios",
       "android",
@@ -16,7 +16,7 @@
       "backgroundColor": "#ffffff"
     },
       "androidNavigationBar": {
-        "backgroundColor": "#083D77",
+        "backgroundColor": "#FFFFFF",
         "barStyle": "light-content"
       }
     ,
