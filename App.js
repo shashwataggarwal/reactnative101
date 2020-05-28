@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
+import { StyleSheet } from "react-native";
 import { AppLoading } from 'expo';
-import { Container, Text, Header, Left, Right, Body, Button, Icon, Title, Content, Footer, FooterTab, Tabs, Tab } from 'native-base';
+import { Container, Text, Header, Left, Right, Body, Button, Icon, Title, Content, Footer, FooterTab, Tabs, Tab, StyleProvider } from 'native-base';
 import * as Font from 'expo-font';
-
-
+import getTheme from './native-base-theme/components';
+import platform from './native-base-theme/variables/platform';
 
 function MyTabs() {
-	return (<Tabs style={{ position: 'relative', marginTop: -12, marginHorizontal:20 }}>
-		<Tab heading="Tab1">
-			<Text>Hello 1</Text>
-		</Tab>
-		<Tab heading="Tab2">
-			<Text>Hello 1</Text>
-		</Tab>
-		<Tab heading="Tab3">
-			<Text>Hello 1</Text>
-		</Tab>
-	</Tabs>)
+	return (
+		<Tabs tabStyle={styles.tabs} tabBarUnderlineStyle={{width:30, marginHorizontal:'7%'}} style={styles.tabsNav}>
+			<Tab heading="Tab1">
+				<Text>Hello 1</Text>
+			</Tab>
+			<Tab heading="Tab2">
+				<Text>Hello 1</Text>
+			</Tab>
+			<Tab heading="Tab3">
+				<Text>Hello 1</Text>
+			</Tab>
+		</Tabs>
+	)
 }
 function MyHeader() {
 	return (<Header>
@@ -32,7 +35,7 @@ function MyHeader() {
 	</Header>)
 }
 function MyFooter() {
-	return(<Footer>
+	return (<Footer>
 		<FooterTab>
 			<Button vertical>
 				<Icon name="apps" />
@@ -55,7 +58,7 @@ function MyFooter() {
 }
 
 export default function App() {
-	[isReady, setIsReady] = useState(false);
+	const [isReady, setIsReady] = useState(false);
 	async function componentDidMount() {
 		await Font.loadAsync({
 			Roboto: require('native-base/Fonts/Roboto.ttf'),
@@ -67,11 +70,27 @@ export default function App() {
 	return (!isReady) ? (
 		<AppLoading />
 	) : (
-			<Container>
-				<MyHeader />
-				<MyTabs />
-				<MyFooter/>
-			</Container>
+			
+
+				<Container>
+					<MyHeader />
+					<StyleProvider style={getTheme(platform)}>
+					<MyTabs/>
+					</StyleProvider>
+					<MyFooter />
+				</Container>
 		);
 
 }
+const styles = StyleSheet.create({
+	tabsNav: {
+		// marginHorizontal: 10,
+		borderRadius: 50,
+		marginTop: 10,
+		backgroundColor:'#FF0000'
+	},
+	tabs: {
+		backgroundColor: "#00FF00",
+		borderRadius: 50,
+	}
+})
